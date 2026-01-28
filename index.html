@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
+    
+    <!-- Method 1: Meta Refresh (Fallback) -->
+    <meta http-equiv="refresh" content="0; url=https://gullyscorer.netlify.app/">
+    
+    <!-- Method 2: Canonical Link (SEO) -->
+    <link rel="canonical" href="https://gullyscorer.netlify.app/">
+
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f8fafc;
+            color: #334155;
+            text-align: center;
+            padding: 20px;
+        }
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+        }
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #F7631B;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem auto;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        a { color: #F7631B; font-weight: bold; text-decoration: none; }
+    </style>
+
+    <script>
+        // Method 3: JavaScript Redirect (Primary)
+        // This preserves the path (e.g., /about) and query params (e.g., ?matchId=123)
+        window.onload = function() {
+            const newDomain = "https://gullyscorer.netlify.app";
+            const currentPath = window.location.pathname;
+            const currentQuery = window.location.search;
+            
+            window.location.replace(newDomain + currentPath + currentQuery);
+        };
+    </script>
+</head>
+<body>
+    <div class="card">
+        <div class="spinner"></div>
+        <h2>We've Moved!</h2>
+        <p>Redirecting you to our new home...</p>
+        <p><a href="https://gullyscorer.netlify.app/">Click here if not redirected</a></p>
+    </div>
+</body>
+</html>
