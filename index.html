@@ -3,10 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirecting...</title>
-    
-    <!-- Fallback Redirect -->
-    <meta http-equiv="refresh" content="2; url=https://gullyscorer.netlify.app/">
+    <title>Page Moved</title>
     
     <style>
         body {
@@ -21,6 +18,14 @@
             text-align: center;
             padding: 20px;
         }
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
         .spinner {
             border: 3px solid #f3f3f3;
             border-top: 3px solid #F7631B;
@@ -31,29 +36,50 @@
             margin: 0 auto 1rem auto;
         }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        a { color: #F7631B; font-weight: bold; text-decoration: none; }
+        a { color: #F7631B; font-weight: bold; text-decoration: none; word-break: break-all; }
+        .url-box {
+            background: #f1f5f9;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            margin-top: 1rem;
+            word-break: break-all;
+        }
     </style>
 
     <script>
+        // 1. Calculate target URL immediately
+        const newDomain = "https://gullyscorer.netlify.app";
+        const currentPath = window.location.pathname;
+        const currentQuery = window.location.search;
+        const targetUrl = newDomain + currentPath + currentQuery;
+
         window.onload = function() {
-            // 1. Get the path the user tried to visit (e.g., /admin2603...)
-            const path = window.location.pathname;
-            const query = window.location.search;
-            
-            // 2. Construct the new URL
-            const newUrl = "https://gullyscorer.netlify.app" + path + query;
-            
-            // 3. Redirect immediately
-            window.location.replace(newUrl);
+            // 2. Update the visual link so user can see/click the correct destination
+            const linkElement = document.getElementById('manual-link');
+            if (linkElement) {
+                linkElement.href = targetUrl;
+                linkElement.innerText = targetUrl;
+            }
+
+            // 3. Force redirect
+            setTimeout(function() {
+                window.location.href = targetUrl;
+            }, 1000); // 1s delay to allow user to see the "Moved" message
         };
     </script>
 </head>
 <body>
-    <div style="background:white; padding:2rem; border-radius:1rem; box-shadow:0 4px 6px -1px rgba(0,0,0,0.1); max-width:400px;">
+    <div class="card">
         <div class="spinner"></div>
         <h2>Page Moved</h2>
-        <p>We are redirecting you to the new location...</p>
-        <p><a href="https://gullyscorer.netlify.app/">Click here if stuck</a></p>
+        <p>This content has moved to our new domain.</p>
+        <p>Redirecting you now...</p>
+        
+        <div class="url-box">
+            <p style="margin-bottom: 5px; font-weight: bold;">Going to:</p>
+            <a id="manual-link" href="https://gullyscorer.netlify.app/">https://gullyscorer.netlify.app/</a>
+        </div>
     </div>
 </body>
 </html>
