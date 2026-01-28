@@ -3,8 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page Moved</title>
+    <title>Redirecting...</title>
     
+    <!-- Method 1: Meta Refresh (Fallback for non-JS users) -->
+    <!-- Delayed to 3s to allow JS to capture sub-paths first -->
+    <meta http-equiv="refresh" content="3; url=https://gullyscorer.netlify.app/">
+    
+    <!-- Method 2: Canonical Link (SEO) -->
+    <link rel="canonical" href="https://gullyscorer.netlify.app/">
+
     <style>
         body {
             font-family: system-ui, -apple-system, sans-serif;
@@ -24,7 +31,6 @@
             border-radius: 1rem;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
             max-width: 400px;
-            width: 100%;
         }
         .spinner {
             border: 3px solid #f3f3f3;
@@ -36,50 +42,28 @@
             margin: 0 auto 1rem auto;
         }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        a { color: #F7631B; font-weight: bold; text-decoration: none; word-break: break-all; }
-        .url-box {
-            background: #f1f5f9;
-            padding: 10px;
-            border-radius: 8px;
-            font-size: 0.8rem;
-            margin-top: 1rem;
-            word-break: break-all;
-        }
+        a { color: #F7631B; font-weight: bold; text-decoration: none; }
     </style>
 
     <script>
-        // 1. Calculate target URL immediately
-        const newDomain = "https://gullyscorer.netlify.app";
-        const currentPath = window.location.pathname;
-        const currentQuery = window.location.search;
-        const targetUrl = newDomain + currentPath + currentQuery;
-
+        // Method 3: JavaScript Redirect (Primary)
+        // This preserves the path (e.g., /about) and query params (e.g., ?matchId=123)
         window.onload = function() {
-            // 2. Update the visual link so user can see/click the correct destination
-            const linkElement = document.getElementById('manual-link');
-            if (linkElement) {
-                linkElement.href = targetUrl;
-                linkElement.innerText = targetUrl;
-            }
-
-            // 3. Force redirect
-            setTimeout(function() {
-                window.location.href = targetUrl;
-            }, 1000); // 1s delay to allow user to see the "Moved" message
+            const newDomain = "https://gullyscorer.netlify.app";
+            const currentPath = window.location.pathname;
+            const currentQuery = window.location.search;
+            
+            // Redirect to the new domain while keeping the specific page and data
+            window.location.replace(newDomain + currentPath + currentQuery);
         };
     </script>
 </head>
 <body>
     <div class="card">
         <div class="spinner"></div>
-        <h2>Page Moved</h2>
-        <p>This content has moved to our new domain.</p>
-        <p>Redirecting you now...</p>
-        
-        <div class="url-box">
-            <p style="margin-bottom: 5px; font-weight: bold;">Going to:</p>
-            <a id="manual-link" href="https://gullyscorer.netlify.app/">https://gullyscorer.netlify.app/</a>
-        </div>
+        <h2>We've Moved!</h2>
+        <p>Redirecting you to our new home...</p>
+        <p><a href="https://gullyscorer.netlify.app/">Click here if not redirected</a></p>
     </div>
 </body>
 </html>
