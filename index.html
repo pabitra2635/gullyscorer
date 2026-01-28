@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redirecting...</title>
     
-    <!-- Method 1: Meta Refresh (Fallback for non-JS users) -->
-    <!-- Delayed to 3s to allow JS to capture sub-paths first -->
-    <meta http-equiv="refresh" content="3; url=https://gullyscorer.netlify.app/">
+    <!-- Method 1: Meta Refresh (Fallback) -->
+    <meta http-equiv="refresh" content="2; url=https://gullyscorer.netlify.app/">
     
     <!-- Method 2: Canonical Link (SEO) -->
     <link rel="canonical" href="https://gullyscorer.netlify.app/">
@@ -46,14 +45,14 @@
     </style>
 
     <script>
-        // Method 3: JavaScript Redirect (Primary)
-        // This preserves the path (e.g., /about) and query params (e.g., ?matchId=123)
+        // Method 3: JavaScript Redirect
+        // Captures specific pages like /admin260305.html and redirects them
         window.onload = function() {
             const newDomain = "https://gullyscorer.netlify.app";
             const currentPath = window.location.pathname;
             const currentQuery = window.location.search;
             
-            // Redirect to the new domain while keeping the specific page and data
+            // Replaces the current URL in history so back button works
             window.location.replace(newDomain + currentPath + currentQuery);
         };
     </script>
